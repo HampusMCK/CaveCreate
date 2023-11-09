@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Data.Common;
 using UnityEngine;
 
 public class WorldSc : MonoBehaviour
@@ -21,7 +22,11 @@ public class WorldSc : MonoBehaviour
     ChunkCoord playerLastChunkCoord;
 
     List<ChunkCoord> chunksToCreate = new List<ChunkCoord>();
-    private bool isCreatingChunks;
+    List<Chunk> chunksToUpdate = new List<Chunk>();
+
+    bool applyingModifications = false;
+
+    Queue<VoxelMod> modifications = new Queue<VoxelMod>();
 
     public GameObject debugScreen;
 
@@ -38,13 +43,21 @@ public class WorldSc : MonoBehaviour
     private void Update()
     {
         playerChunkCoord = getChunkCoordFromVector3(player.position);
+
+        //Only Update The Chunks If The Player Has Moved From The Chunk They Were Previously On.
         if (!playerChunkCoord.Equals(playerLastChunkCoord))
         {
             CheckViewDistance();
         }
 
-        if (chunksToCreate.Count > 0 && !isCreatingChunks)
-            StartCoroutine("CreateChunks");
+        if (modifications.Count > 0 && !applyingModifications)
+            StartCoroutine(ApplyModifications());
+
+        if (chunksToCreate.Count > 0)
+            createChunk();
+
+        if (chunksToUpdate.Count > 0)
+            UpdateChunks();
 
         if (Input.GetKeyDown(KeyCode.F3))
             debugScreen.SetActive(!debugScreen.activeSelf);
@@ -61,21 +74,92 @@ public class WorldSc : MonoBehaviour
             }
         }
 
+        while (modifications.Count > 0)
+        {
+            VoxelMod v = modifications.Dequeue();
+
+            ChunkCoord c = getChunkCoordFromVector3(v.position);
+
+            if (chunks[c.x, c.z] == null)
+            {
+                chunks[c.x, c.z] = new Chunk (c, this, true);
+                activeChunks.Add(c);
+            }
+
+            chunks[c.x, c.z].modifications.Enqueue(v);
+
+            if (!chunksToUpdate.Contains(chunks[c.x, c.z]))
+            {
+                chunksToUpdate.Add(chunks[c.x, c.z]);
+            }
+        }
+
+        for (int i = 0; i < chunksToUpdate.Count; i++)
+        {
+            chunksToUpdate[0].UpdateChunk();
+            chunksToUpdate.RemoveAt(0);
+        }
+
         player.position = spawnPosition;
     }
 
-    IEnumerator CreateChunks()
+    void createChunk()
     {
-        isCreatingChunks = true;
+        ChunkCoord c = chunksToCreate[0];
+        chunksToCreate.RemoveAt(0);
+        activeChunks.Add(c);
+        chunks [c.x, c.z].Init();
+    }
 
-        while (chunksToCreate.Count > 0)
+    void UpdateChunks()
+    {
+        bool updated = false;
+        int index = 0;
+
+        while (!updated && index < chunksToUpdate.Count - 1)
         {
-            chunks[chunksToCreate[0].x, chunksToCreate[0].z].Init();
-            chunksToCreate.RemoveAt(0);
-            yield return null;
+            if (chunksToUpdate[index].isVoxelMapPopulated)
+            {
+                chunksToUpdate[index].UpdateChunk();
+                chunksToUpdate.RemoveAt(index);
+                updated = true;
+            }
+            else
+                index++;
+        }
+    }
+
+    IEnumerator ApplyModifications()
+    {
+        applyingModifications = true;
+        int count = 0;
+
+        while (modifications.Count > 0)
+        {
+            VoxelMod v = modifications.Dequeue();
+
+            ChunkCoord c = getChunkCoordFromVector3(v.position);
+
+            if (chunks[c.x, c.z] == null)
+            {
+                chunks[c.x, c.z] = new Chunk(c, this, true);
+                activeChunks.Add(c);
+            }
+
+            chunks[c.x, c.z].modifications.Enqueue(v);
+
+            if (!chunksToUpdate.Contains(chunks[c.x, c.z]))
+                chunksToUpdate.Add(chunks[c.x, c.z]);
+
+                count++;
+                if (count > 200)
+                {
+                    count = 0;
+                    yield return null;
+                }
         }
 
-        isCreatingChunks = false;
+        applyingModifications = false;
     }
 
     ChunkCoord getChunkCoordFromVector3(Vector3 pos)
@@ -160,7 +244,7 @@ public class WorldSc : MonoBehaviour
 
     public byte GetVoxel(Vector3 pos)
     {
-        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand */
+        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
 
         int yPos = Mathf.FloorToInt(pos.y);
         //IMMUTABLE PASS 
@@ -178,7 +262,7 @@ public class WorldSc : MonoBehaviour
         int terrainHeight = Mathf.FloorToInt(biome.terrainHeight * Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.terrainScale)) + biome.solidGroundHeight;
         byte voxelValue = 0;
 
-        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand */
+        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
 
         if (yPos == terrainHeight)
         {
@@ -198,6 +282,7 @@ public class WorldSc : MonoBehaviour
         }
 
         //Second Pass
+        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
 
         if (voxelValue == 2)
         {
@@ -209,6 +294,22 @@ public class WorldSc : MonoBehaviour
                     {
                         voxelValue = lode.blockID;
                     }
+                }
+            }
+        }
+
+        //Tree Pass
+        /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
+
+        if (yPos == terrainHeight)
+        {
+            if (Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.treeZoneScale) > biome.treeZoneThreshold)
+            {
+                voxelValue = 1;
+                if (Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.treePlacementScale) > biome.treePlacementThreshold)
+                {
+                    voxelValue = 6;
+                    Structure.MakeTree(pos, modifications, biome.minTreeHeight, biome.maxTreeHeight);
                 }
             }
         }
@@ -275,5 +376,23 @@ public class BlockType
             default:
                 return 0;
         }
+    }
+}
+
+public class VoxelMod
+{
+    public Vector3 position;
+    public byte id;
+
+    public VoxelMod()
+    {
+        position = new Vector3();
+        id = 0;
+    }
+
+    public VoxelMod(Vector3 _position, byte _id)
+    {
+        position = _position;
+        id = _id;
     }
 }
