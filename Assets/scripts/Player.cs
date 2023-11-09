@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public float checkIncrement = 0.1f;
     public float reach = 8;
 
-    public byte selectedBlockIndex = 8;
+    public Toolbar toolbar;
 
     private void Start()
     {
@@ -46,21 +46,32 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CalculateVelocity();
-        if (jumpRequest)
+        if (!world.inUI)
         {
-            Jump();
-        }
+            CalculateVelocity();
+            if (jumpRequest)
+            {
+                Jump();
+            }
 
-        transform.Rotate(Vector3.up * mouseHorizontal);
-        cam.Rotate(Vector3.right * -mouseVertical);
-        transform.Translate(velocity, Space.World);
+            transform.Rotate(Vector3.up * mouseHorizontal);
+            cam.Rotate(Vector3.right * -mouseVertical);
+            transform.Translate(velocity, Space.World);
+        }
     }
 
     private void Update()
     {
-        GetPlayerInputs();
-        placeCursorBlocks();
+        if (Input.GetAxis("Menu") > 0)
+        {
+            world.inUI = !world.inUI;
+        }
+
+        if (!world.inUI)
+        {
+            GetPlayerInputs();
+            placeCursorBlocks();
+        }
     }
 
     void Jump()
@@ -138,7 +149,13 @@ public class Player : MonoBehaviour
 
             //Place Block.
             if (Input.GetMouseButtonDown(1))
-                world.getChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlockIndex);
+            {
+                if (toolbar.slots[toolbar.slotIndex].HasItem)
+                {
+                    world.getChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, toolbar.slots[toolbar.slotIndex].itemSlot.stack.id);
+                    toolbar.slots[toolbar.slotIndex].itemSlot.Take(1);
+                }
+            }
         }
     }
 

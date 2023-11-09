@@ -38,7 +38,7 @@ public class DebugScreen : MonoBehaviour
 
         if (timer > 1)
         {
-            framRate = (int)(1/Time.unscaledDeltaTime);
+            framRate = (int)(1 / Time.unscaledDeltaTime);
             timer = 0;
         }
         else

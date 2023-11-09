@@ -23,10 +23,13 @@ public class WorldSc : MonoBehaviour
 
     List<ChunkCoord> chunksToCreate = new List<ChunkCoord>();
     List<Chunk> chunksToUpdate = new List<Chunk>();
+    public Queue<Chunk> chunksToDraw = new Queue<Chunk>();
 
     bool applyingModifications = false;
 
-    Queue<VoxelMod> modifications = new Queue<VoxelMod>();
+    Queue<Queue<VoxelMod>> modifications = new Queue<Queue<VoxelMod>>();
+
+    private bool _inUI = false;
 
     public GameObject debugScreen;
 
@@ -50,14 +53,21 @@ public class WorldSc : MonoBehaviour
             CheckViewDistance();
         }
 
-        if (modifications.Count > 0 && !applyingModifications)
-            StartCoroutine(ApplyModifications());
+        if (!applyingModifications)
+            ApplyModifications();
 
         if (chunksToCreate.Count > 0)
             createChunk();
 
         if (chunksToUpdate.Count > 0)
             UpdateChunks();
+
+        if (chunksToDraw.Count > 0)
+            lock (chunksToDraw)
+            {
+                if (chunksToDraw.Peek().isEditable)
+                    chunksToDraw.Dequeue().createMesh();
+            }
 
         if (Input.GetKeyDown(KeyCode.F3))
             debugScreen.SetActive(!debugScreen.activeSelf);
@@ -74,32 +84,6 @@ public class WorldSc : MonoBehaviour
             }
         }
 
-        while (modifications.Count > 0)
-        {
-            VoxelMod v = modifications.Dequeue();
-
-            ChunkCoord c = getChunkCoordFromVector3(v.position);
-
-            if (chunks[c.x, c.z] == null)
-            {
-                chunks[c.x, c.z] = new Chunk (c, this, true);
-                activeChunks.Add(c);
-            }
-
-            chunks[c.x, c.z].modifications.Enqueue(v);
-
-            if (!chunksToUpdate.Contains(chunks[c.x, c.z]))
-            {
-                chunksToUpdate.Add(chunks[c.x, c.z]);
-            }
-        }
-
-        for (int i = 0; i < chunksToUpdate.Count; i++)
-        {
-            chunksToUpdate[0].UpdateChunk();
-            chunksToUpdate.RemoveAt(0);
-        }
-
         player.position = spawnPosition;
     }
 
@@ -108,7 +92,7 @@ public class WorldSc : MonoBehaviour
         ChunkCoord c = chunksToCreate[0];
         chunksToCreate.RemoveAt(0);
         activeChunks.Add(c);
-        chunks [c.x, c.z].Init();
+        chunks[c.x, c.z].Init();
     }
 
     void UpdateChunks()
@@ -118,7 +102,7 @@ public class WorldSc : MonoBehaviour
 
         while (!updated && index < chunksToUpdate.Count - 1)
         {
-            if (chunksToUpdate[index].isVoxelMapPopulated)
+            if (chunksToUpdate[index].isEditable)
             {
                 chunksToUpdate[index].UpdateChunk();
                 chunksToUpdate.RemoveAt(index);
@@ -129,34 +113,33 @@ public class WorldSc : MonoBehaviour
         }
     }
 
-    IEnumerator ApplyModifications()
+    void ApplyModifications()
     {
         applyingModifications = true;
-        int count = 0;
 
         while (modifications.Count > 0)
         {
-            VoxelMod v = modifications.Dequeue();
+            Queue<VoxelMod> queue = modifications.Dequeue();
 
-            ChunkCoord c = getChunkCoordFromVector3(v.position);
-
-            if (chunks[c.x, c.z] == null)
+            while (queue.Count > 0)
             {
-                chunks[c.x, c.z] = new Chunk(c, this, true);
-                activeChunks.Add(c);
-            }
 
-            chunks[c.x, c.z].modifications.Enqueue(v);
 
-            if (!chunksToUpdate.Contains(chunks[c.x, c.z]))
-                chunksToUpdate.Add(chunks[c.x, c.z]);
+                VoxelMod v = queue.Dequeue();
 
-                count++;
-                if (count > 200)
+                ChunkCoord c = getChunkCoordFromVector3(v.position);
+
+                if (chunks[c.x, c.z] == null)
                 {
-                    count = 0;
-                    yield return null;
+                    chunks[c.x, c.z] = new Chunk(c, this, true);
+                    activeChunks.Add(c);
                 }
+
+                chunks[c.x, c.z].modifications.Enqueue(v);
+
+                if (!chunksToUpdate.Contains(chunks[c.x, c.z]))
+                    chunksToUpdate.Add(chunks[c.x, c.z]);
+            }
         }
 
         applyingModifications = false;
@@ -169,7 +152,7 @@ public class WorldSc : MonoBehaviour
         return new ChunkCoord(x, z);
     }
 
-    public Chunk getChunkFromVector3 (Vector3 pos)
+    public Chunk getChunkFromVector3(Vector3 pos)
     {
         int x = Mathf.FloorToInt(pos.x / voxelData.chunkWidth);
         int z = Mathf.FloorToInt(pos.z / voxelData.chunkWidth);
@@ -223,26 +206,40 @@ public class WorldSc : MonoBehaviour
         if (!isChunkInWorld(thisChunk) || pos.y < 0 || pos.y > voxelData.chunkHeight)
             return false;
 
-        if (chunks[thisChunk.x, thisChunk.z] != null && chunks[thisChunk.x, thisChunk.z].isVoxelMapPopulated)
+        if (chunks[thisChunk.x, thisChunk.z] != null && chunks[thisChunk.x, thisChunk.z].isEditable)
             return blockType[chunks[thisChunk.x, thisChunk.z].GetVoxelFromGlobalVector3(pos)].isSolid;
 
         return blockType[GetVoxel(pos)].isSolid;
     }
 
-     public bool CheckIfVoxelTransparent(Vector3 pos)
+    public bool CheckIfVoxelTransparent(Vector3 pos)
     {
         ChunkCoord thisChunk = new ChunkCoord(pos);
 
         if (!isChunkInWorld(thisChunk) || pos.y < 0 || pos.y > voxelData.chunkHeight)
             return false;
 
-        if (chunks[thisChunk.x, thisChunk.z] != null && chunks[thisChunk.x, thisChunk.z].isVoxelMapPopulated)
+        if (chunks[thisChunk.x, thisChunk.z] != null && chunks[thisChunk.x, thisChunk.z].isEditable)
             return blockType[chunks[thisChunk.x, thisChunk.z].GetVoxelFromGlobalVector3(pos)].isTransparent;
 
         return blockType[GetVoxel(pos)].isTransparent;
     }
 
-    public byte GetVoxel(Vector3 pos)
+    public bool inUI
+    {
+        get { return _inUI; }
+
+        set
+        {
+            _inUI = value;
+            if (_inUI)
+                Cursor.lockState = CursorLockMode.None;
+            else
+                Cursor.lockState = CursorLockMode.Locked;
+        }
+    }
+
+    public byte GetVoxel(Vector3 pos) // Get Block To Draw
     {
         /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
 
@@ -305,11 +302,9 @@ public class WorldSc : MonoBehaviour
         {
             if (Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.treeZoneScale) > biome.treeZoneThreshold)
             {
-                voxelValue = 1;
                 if (Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.treePlacementScale) > biome.treePlacementThreshold)
                 {
-                    voxelValue = 6;
-                    Structure.MakeTree(pos, modifications, biome.minTreeHeight, biome.maxTreeHeight);
+                    modifications.Enqueue(Structure.MakeTree(pos, biome.minTreeHeight, biome.maxTreeHeight));
                 }
             }
         }
