@@ -84,6 +84,13 @@ public class WorldSc : MonoBehaviour
         return new ChunkCoord(x, z);
     }
 
+    public Chunk getChunkFromVector3 (Vector3 pos)
+    {
+        int x = Mathf.FloorToInt(pos.x / voxelData.chunkWidth);
+        int z = Mathf.FloorToInt(pos.z / voxelData.chunkWidth);
+        return chunks[x, z];
+    }
+
     void CheckViewDistance()
     {
         ChunkCoord coord = getChunkCoordFromVector3(player.position);
@@ -224,6 +231,7 @@ public class BlockType
 {
     public string name;
     public bool isSolid;
+    public Sprite Icon;
 
     [Header("Texture Values")]
     public int backFaceTexture;

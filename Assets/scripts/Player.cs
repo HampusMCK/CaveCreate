@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -32,10 +34,14 @@ public class Player : MonoBehaviour
     public float checkIncrement = 0.1f;
     public float reach = 8;
 
+    public byte selectedBlockIndex = 1;
+
     private void Start()
     {
         cam = GameObject.Find("Main Camera").transform;
         world = GameObject.Find("World").GetComponent<WorldSc>();
+
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     private void FixedUpdate()
@@ -54,6 +60,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         GetPlayerInputs();
+        placeCursorBlocks();
     }
 
     void Jump()
@@ -122,6 +129,17 @@ public class Player : MonoBehaviour
         {
             jumpRequest = true;
         }
+
+        if (HighlightedBlock.gameObject.activeSelf)
+        {
+            //Destroy Block.
+            if (Input.GetMouseButtonDown(0))
+                world.getChunkFromVector3(HighlightedBlock.position).EditVoxel(HighlightedBlock.position, 0);
+
+            //Place Block.
+            if (Input.GetMouseButtonDown(1))
+                world.getChunkFromVector3(PlaceBlock.position).EditVoxel(PlaceBlock.position, selectedBlockIndex);
+        }
     }
 
     private void placeCursorBlocks()
@@ -129,7 +147,28 @@ public class Player : MonoBehaviour
         float step = checkIncrement;
         Vector3 lastPos = new Vector3();
 
-        
+        while (step < reach)
+        {
+            Vector3 pos = cam.position + (cam.forward * step);
+
+            if (world.CheckForVoxel(pos))
+            {
+                HighlightedBlock.position = new Vector3(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y), Mathf.FloorToInt(pos.z));
+                PlaceBlock.position = lastPos;
+
+                HighlightedBlock.gameObject.SetActive(true);
+                PlaceBlock.gameObject.SetActive(true);
+
+                return;
+            }
+
+            lastPos = new Vector3(Mathf.FloorToInt(pos.x), Mathf.FloorToInt(pos.y), Mathf.FloorToInt(pos.z));
+
+            step += checkIncrement;
+        }
+
+        HighlightedBlock.gameObject.SetActive(false);
+        PlaceBlock.gameObject.SetActive(false);
     }
 
     private float checkDownSpeed(float downSpeed)

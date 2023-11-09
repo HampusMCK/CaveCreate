@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b07dddc9e0f4b134bbc178200c4885b9
+guid: c09f2a6506625d249891bfd68dda60f7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: atlas1_0
+      name: GrassDirt
       rect:
         serializedVersion: 2
         x: 0
@@ -157,20 +157,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f894795960221c849bca2c79e2fdff17
-      internalID: 767205622
+      spriteID: 7a3774899fc9fda4b82f263f15147327
+      internalID: -259743860
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_1
+      name: Dirt
       rect:
         serializedVersion: 2
         x: 16
@@ -178,20 +178,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fe07765c3ef9ca64e9b679da4fceb3c0
-      internalID: 1413672882
+      spriteID: cb01661055afcb84c825b34069ca4d41
+      internalID: 155194467
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_2
+      name: Dir
       rect:
         serializedVersion: 2
         x: 32
@@ -199,41 +199,41 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 17cc510ee83d8c64788ff68f563eb98f
-      internalID: 1218636469
+      spriteID: 8f802d03d47f75448a3189423ca23294
+      internalID: 1397510886
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_3
+      name: WoodSide
       rect:
         serializedVersion: 2
         x: 48
-        y: 304
+        y: 303
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0afd91354d1f2554f8b2f0fb66b7f7dd
-      internalID: 1682045961
+      spriteID: 1908767fae0a03348af2bf1b1fecd190
+      internalID: -1270637322
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_4
+      name: WoodTopBottom
       rect:
         serializedVersion: 2
         x: 64
@@ -241,20 +241,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 26a95fbcae159524592c3d6e9010855f
-      internalID: 1196291080
+      spriteID: 65f98183ebb4ecc4aa54c83cffaac6b0
+      internalID: -1075605827
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_5
+      name: Stone
       rect:
         serializedVersion: 2
         x: 80
@@ -262,20 +262,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 02ddce4b0d2a5f543aea34f324557091
-      internalID: -1668675275
+      spriteID: 1a782b1f2e957874fb34f6fb158ec9cc
+      internalID: -660908707
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_6
+      name: Bedrock
       rect:
         serializedVersion: 2
         x: 96
@@ -283,20 +283,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c363818614217844f8b477d1682ea505
-      internalID: -205177560
+      spriteID: 1f6bc151c18468f4db6076b306f91560
+      internalID: -1273650768
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_7
+      name: Sand
       rect:
         serializedVersion: 2
         x: 112
@@ -304,20 +304,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 86d5098bdb12fe14a827c704a187084e
-      internalID: -1821925723
+      spriteID: ecc2255227d2b76458daebaba9263505
+      internalID: -237984281
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_8
+      name: Glass
       rect:
         serializedVersion: 2
         x: 128
@@ -325,20 +325,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 527517da7eac51c49b9348298cd2c21b
-      internalID: -17053373
+      spriteID: 1124d0454f4d91e46ba650b01f4f7dae
+      internalID: -1808323530
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_9
+      name: DiamondOre
       rect:
         serializedVersion: 2
         x: 144
@@ -346,20 +346,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: efde70a0b05658342a2ed42df7271939
-      internalID: -1627584304
+      spriteID: 46e8d4fb44be02145ae9958277a82ae9
+      internalID: -1005731130
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_10
+      name: GoldOre
       rect:
         serializedVersion: 2
         x: 160
@@ -367,20 +367,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e4a34ae8e3ac8224984584a5422ebe70
-      internalID: 1714221449
+      spriteID: dfde03200e62c404aa538b59284a8101
+      internalID: -988642815
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_11
+      name: IronOre
       rect:
         serializedVersion: 2
         x: 176
@@ -388,20 +388,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c3d371f05276bd944add3ebbe4754125
-      internalID: 1332203443
+      spriteID: a5945c6c55cf0dc4eb21464afe03ef4c
+      internalID: 204821390
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_12
+      name: CoalOre
       rect:
         serializedVersion: 2
         x: 192
@@ -409,20 +409,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ac3939ab38571af42990b9a4b9b3bdb2
-      internalID: 1784381768
+      spriteID: 2537a756b5e669a49b5778f4adaa89eb
+      internalID: -531874706
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_13
+      name: EmeraldOre
       rect:
         serializedVersion: 2
         x: 208
@@ -430,20 +430,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8fcdb819bc6bace44885f9019839be26
-      internalID: -55459170
+      spriteID: 573654534d866144a980b5a972be105d
+      internalID: 989980312
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: atlas1_14
+      name: Leaf
       rect:
         serializedVersion: 2
         x: 0
@@ -451,14 +451,14 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ea31d5f8b49f1bd4c9112148034eec30
-      internalID: -1080231919
+      spriteID: cd5c5f679f311ac41a9501d4ac17b666
+      internalID: -1469796358
       vertices: []
       indices: 
       edges: []
@@ -466,7 +466,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 0f47ae8617c7a134c9aae305e616489f
+    spriteID: 409ea8af20ea1624eb6d730ec1073adb
     internalID: 0
     vertices: []
     indices: 
@@ -474,21 +474,21 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      atlas1_0: 767205622
-      atlas1_1: 1413672882
-      atlas1_10: 1714221449
-      atlas1_11: 1332203443
-      atlas1_12: 1784381768
-      atlas1_13: -55459170
-      atlas1_14: -1080231919
-      atlas1_2: 1218636469
-      atlas1_3: 1682045961
-      atlas1_4: 1196291080
-      atlas1_5: -1668675275
-      atlas1_6: -205177560
-      atlas1_7: -1821925723
-      atlas1_8: -17053373
-      atlas1_9: -1627584304
+      Bedrock: -1273650768
+      CoalOre: -531874706
+      DiamondOre: -1005731130
+      Dir: 1397510886
+      Dirt: 155194467
+      EmeraldOre: 989980312
+      Glass: -1808323530
+      GoldOre: -988642815
+      GrassDirt: -259743860
+      IronOre: 204821390
+      Leaf: -1469796358
+      Sand: -237984281
+      Stone: -660908707
+      WoodSide: -1270637322
+      WoodTopBottom: -1075605827
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
