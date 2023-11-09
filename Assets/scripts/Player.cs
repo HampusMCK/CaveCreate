@@ -34,7 +34,7 @@ public class Player : MonoBehaviour
     public float checkIncrement = 0.1f;
     public float reach = 8;
 
-    public byte selectedBlockIndex = 1;
+    public byte selectedBlockIndex = 8;
 
     private void Start()
     {

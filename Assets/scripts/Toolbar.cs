@@ -13,18 +13,20 @@ public class Toolbar : MonoBehaviour
 
     int slotIndex = 0;
 
-    private void Start() 
+    private void Start()
     {
         world = GameObject.Find("World").GetComponent<WorldSc>();
 
         foreach (ItemSlot slot in itemSlots)
         {
-         slot.Icon.sprite = world.blockType[slot.itemID].Icon; 
-         slot.Icon.enabled = true;  
+            slot.Icon.sprite = world.blockType[slot.itemID].Icon;
+            slot.Icon.enabled = true;
         }
+        player.selectedBlockIndex = itemSlots[slotIndex].itemID;
     }
 
-    private void Update() {
+    private void Update()
+    {
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
         if (scroll != 0)
