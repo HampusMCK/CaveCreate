@@ -12,6 +12,9 @@ public class Player : MonoBehaviour
 
     private Transform cam;
     private WorldSc world;
+    public GameObject inventory;
+    public GameObject cursorSlot;
+    public DragAndDropHandler myCursor;
 
     public float walkSpeed = 3;
     public float sprintSpeed = 6;
@@ -33,6 +36,8 @@ public class Player : MonoBehaviour
     public Transform PlaceBlock;
     public float checkIncrement = 0.1f;
     public float reach = 8;
+
+    private bool hasReleasedUIButton = true;
 
     public Toolbar toolbar;
 
@@ -62,9 +67,19 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetAxis("Menu") > 0)
+        if (Input.GetAxis("Menu") > 0 && hasReleasedUIButton)
         {
+            if (world.inUI)
+                myCursor.returnClicked();
+                
             world.inUI = !world.inUI;
+            inventory.SetActive(world.inUI);
+            cursorSlot.SetActive(world.inUI);
+            hasReleasedUIButton = false;
+        }
+        if (Input.GetAxis("Menu") == 0)
+        {
+            hasReleasedUIButton = true;
         }
 
         if (!world.inUI)

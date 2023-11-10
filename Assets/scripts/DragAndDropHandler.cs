@@ -6,12 +6,14 @@ using UnityEngine.EventSystems;
 
 public class DragAndDropHandler : MonoBehaviour
 {
-    [SerializeField] private UIItemSlot cursorSlot = null;
-    private ItemSlot cursorItemSlot;
+    [SerializeField] public UIItemSlot cursorSlot = null;
+    public ItemSlot cursorItemSlot;
 
     [SerializeField] private GraphicRaycaster m_Raycaster = null;
     private PointerEventData m_PointerEventData;
     [SerializeField] private EventSystem m_EventSystem = null;
+
+    public UIItemSlot pastClick;
 
     WorldSc world;
 
@@ -31,29 +33,41 @@ public class DragAndDropHandler : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             HandleSlotClick(CheckForSlot());
-
         }
+        if (Input.GetMouseButtonDown(1))
+            cursorItemSlot.EmptySlot();
+    }
+
+    public void returnClicked()
+    {
+        if (cursorSlot.HasItem)
+            pastClick.itemSlot.InsetStack(cursorItemSlot.TakeAll());
     }
 
     private void HandleSlotClick(UIItemSlot clickedSlot)
     {
+        pastClick = clickedSlot;
         if (clickedSlot == null)
             return;
 
         if (!cursorSlot.HasItem && !clickedSlot.HasItem)
             return;
 
+        if (clickedSlot.itemSlot.isCreative)
+        {
+            cursorItemSlot.EmptySlot();
+            cursorItemSlot.InsetStack(clickedSlot.itemSlot.stack);
+        }
+
         if (!cursorSlot.HasItem && clickedSlot.HasItem)
         {
-            cursorItemSlot.stack = clickedSlot.itemSlot.TakeAll();
-            cursorSlot.UpdateSlot();
+            cursorItemSlot.InsetStack(clickedSlot.itemSlot.TakeAll());
             return;
         }
 
         if (cursorSlot.HasItem && !clickedSlot.HasItem)
         {
-            clickedSlot.itemSlot.stack = cursorItemSlot.TakeAll();
-            clickedSlot.UpdateSlot();
+            clickedSlot.itemSlot.InsetStack(cursorItemSlot.TakeAll());
             return;
         }
 
@@ -64,15 +78,26 @@ public class DragAndDropHandler : MonoBehaviour
                 ItemStack giveCursor = clickedSlot.itemSlot.TakeAll();
                 ItemStack giveSlot = cursorItemSlot.TakeAll();
 
-                cursorItemSlot.stack = giveCursor;
-                clickedSlot.itemSlot.stack = giveSlot;
-
-                clickedSlot.UpdateSlot();
-                cursorSlot.UpdateSlot();
+                cursorItemSlot.InsetStack(giveCursor);
+                clickedSlot.itemSlot.InsetStack(giveSlot);
             }
             else
             {
-                clickedSlot.itemSlot.stack.amount += cursorItemSlot.stack.amount;
+                if (clickedSlot.itemSlot.stack.amount + cursorItemSlot.stack.amount <= 64)
+                {
+                    clickedSlot.itemSlot.stack.amount += cursorItemSlot.stack.amount;
+                    cursorItemSlot.EmptySlot();
+                    cursorSlot.UpdateSlot();
+                    clickedSlot.UpdateSlot();
+                }
+                else if (clickedSlot.itemSlot.stack.amount + cursorItemSlot.stack.amount > 64)
+                {
+                    int diff = 64 - clickedSlot.itemSlot.stack.amount;
+                    clickedSlot.itemSlot.stack.amount += diff;
+                    cursorItemSlot.stack.amount -= diff;
+                    cursorSlot.UpdateSlot();
+                    clickedSlot.UpdateSlot();
+                }
             }
         }
     }

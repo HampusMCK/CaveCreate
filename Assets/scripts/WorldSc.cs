@@ -8,6 +8,11 @@ public class WorldSc : MonoBehaviour
     public int seed;
     public BiomeAttributes biome;
 
+    [Range(0.95f, 0)]
+    public float globalLightLevel;
+    public Color day;
+    public Color night;
+
     public Transform player;
     public Vector3 spawnPosition;
 
@@ -46,6 +51,9 @@ public class WorldSc : MonoBehaviour
     private void Update()
     {
         playerChunkCoord = getChunkCoordFromVector3(player.position);
+
+        Shader.SetGlobalFloat("GlobalLightLevel", globalLightLevel);
+        Camera.main.backgroundColor = Color.Lerp(day, night, globalLightLevel);
 
         //Only Update The Chunks If The Player Has Moved From The Chunk They Were Previously On.
         if (!playerChunkCoord.Equals(playerLastChunkCoord))
@@ -343,6 +351,7 @@ public class BlockType
     public bool isSolid;
     public bool isTransparent;
     public Sprite Icon;
+    public int maxStackSize;
 
     [Header("Texture Values")]
     public int backFaceTexture;

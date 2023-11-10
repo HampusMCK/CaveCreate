@@ -48,9 +48,9 @@ public class Chunk
         meshFilter = chunkObject.AddComponent<MeshFilter>();
         meshRenderer = chunkObject.AddComponent<MeshRenderer>();
 
-        materials[0] = world.material;
-        materials[1] = world.transparentMaterial;
-        meshRenderer.materials = materials;
+        //materials[0] = world.material;
+        //materials[1] = world.transparentMaterial;
+        meshRenderer.material = world.material;
 
         chunkObject.transform.SetParent(world.transform);
         chunkObject.transform.position = new Vector3(coord.x * voxelData.chunkWidth, 0f, coord.z * voxelData.chunkWidth);
@@ -234,24 +234,24 @@ public class Chunk
 
                 AddTexture(world.blockType[blockId].GetTextureId(p));
 
-                if (!isTransparent)
-                {
+                // if (!isTransparent)
+                // {
                     triangles.Add(vertexIndex);
                     triangles.Add(vertexIndex + 1);
                     triangles.Add(vertexIndex + 2);
                     triangles.Add(vertexIndex + 2);
                     triangles.Add(vertexIndex + 1);
                     triangles.Add(vertexIndex + 3);
-                }
-                else
-                {
-                    transparentTriangles.Add(vertexIndex);
-                    transparentTriangles.Add(vertexIndex + 1);
-                    transparentTriangles.Add(vertexIndex + 2);
-                    transparentTriangles.Add(vertexIndex + 2);
-                    transparentTriangles.Add(vertexIndex + 1);
-                    transparentTriangles.Add(vertexIndex + 3);
-                }
+                //}
+                // else
+                // {
+                //     transparentTriangles.Add(vertexIndex);
+                //     transparentTriangles.Add(vertexIndex + 1);
+                //     transparentTriangles.Add(vertexIndex + 2);
+                //     transparentTriangles.Add(vertexIndex + 2);
+                //     transparentTriangles.Add(vertexIndex + 1);
+                //     transparentTriangles.Add(vertexIndex + 3);
+                // }
 
                 vertexIndex += 4;
             }
@@ -263,10 +263,10 @@ public class Chunk
         Mesh mesh = new Mesh();
         mesh.vertices = vertices.ToArray();
 
-        mesh.subMeshCount = 2;
-        mesh.SetTriangles(triangles.ToArray(), 0);
-        mesh.SetTriangles(transparentTriangles.ToArray(), 1);
-
+        //mesh.subMeshCount = 2;
+        // mesh.SetTriangles(triangles.ToArray(), 0);
+        // mesh.SetTriangles(transparentTriangles.ToArray(), 1);
+        mesh.triangles = triangles.ToArray();
         mesh.uv = uvs.ToArray();
 
         mesh.RecalculateNormals();
