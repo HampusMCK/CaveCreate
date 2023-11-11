@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 using UnityEngine;
 
 public static class voxelData
@@ -8,6 +5,11 @@ public static class voxelData
     public static readonly int chunkWidth = 16;
     public static readonly int chunkHeight = 128;
     public static readonly int WorldSizeInChunks = 100;
+
+    // Lighting Values
+    public static float minLightLevel = 0.15f;
+    public static float maxLightLevel = 0.8f;
+    public static float lightFalloff = 0.08f;
 
     public static int WorldSizeInVoxels
     {

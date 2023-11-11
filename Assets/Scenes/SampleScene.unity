@@ -24,9 +24,9 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 0
+  m_AmbientMode: 3
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 0}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1347,7 +1347,7 @@ Camera:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 2
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
@@ -2158,7 +2158,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   seed: 47583533
   biome: {fileID: 11400000, guid: 41a1de4580bd32a4f9440d9a6cefef5a, type: 2}
-  globalLightLevel: 0
+  enableThreading: 1
+  globalLightLevel: 0.58
+  day: {r: 0, g: 0.75526, b: 1, a: 1}
+  night: {r: 0, g: 0.0039721797, b: 0.4528302, a: 1}
   player: {fileID: 2119425885}
   spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: 6cd8c2521a1bc6b429cde8196460fbec, type: 2}
@@ -2166,7 +2169,8 @@ MonoBehaviour:
   blockType:
   - name: Air
     isSolid: 0
-    isTransparent: 1
+    renderNeighbourFaces: 1
+    transparancy: 0
     Icon: {fileID: 0}
     maxStackSize: 0
     backFaceTexture: 0
@@ -2177,7 +2181,8 @@ MonoBehaviour:
     rightFaceTexture: 0
   - name: Bedrock
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -1273650768, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 6
@@ -2188,7 +2193,8 @@ MonoBehaviour:
     rightFaceTexture: 6
   - name: Stone
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -660908707, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 5
@@ -2199,7 +2205,8 @@ MonoBehaviour:
     rightFaceTexture: 5
   - name: Dirt
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: 155194467, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 1
@@ -2210,7 +2217,8 @@ MonoBehaviour:
     rightFaceTexture: 1
   - name: Leaf
     isSolid: 1
-    isTransparent: 1
+    renderNeighbourFaces: 1
+    transparancy: 0.8
     Icon: {fileID: -1469796358, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 20
@@ -2221,7 +2229,8 @@ MonoBehaviour:
     rightFaceTexture: 20
   - name: grass
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -259743860, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 0
@@ -2232,7 +2241,8 @@ MonoBehaviour:
     rightFaceTexture: 0
   - name: wood
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -1270637322, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 3
@@ -2243,7 +2253,8 @@ MonoBehaviour:
     rightFaceTexture: 3
   - name: Sand
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -237984281, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 7
@@ -2254,7 +2265,8 @@ MonoBehaviour:
     rightFaceTexture: 7
   - name: Glass
     isSolid: 1
-    isTransparent: 1
+    renderNeighbourFaces: 1
+    transparancy: 1
     Icon: {fileID: -1808323530, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 8
@@ -2265,7 +2277,8 @@ MonoBehaviour:
     rightFaceTexture: 8
   - name: Diamond Ore
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -1005731130, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 9
@@ -2276,7 +2289,8 @@ MonoBehaviour:
     rightFaceTexture: 9
   - name: Gold Ore
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -988642815, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 10
@@ -2287,7 +2301,8 @@ MonoBehaviour:
     rightFaceTexture: 10
   - name: Iron Ore
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: 204821390, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 11
@@ -2298,7 +2313,8 @@ MonoBehaviour:
     rightFaceTexture: 11
   - name: Coal Ore
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: -531874706, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 12
@@ -2309,7 +2325,8 @@ MonoBehaviour:
     rightFaceTexture: 12
   - name: Emerald Ore
     isSolid: 1
-    isTransparent: 0
+    renderNeighbourFaces: 0
+    transparancy: 0
     Icon: {fileID: 989980312, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
     maxStackSize: 64
     backFaceTexture: 13
