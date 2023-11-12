@@ -1369,7 +1369,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -1398,7 +1398,7 @@ Transform:
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.8, z: 0}
+  m_LocalPosition: {x: 0, y: 1.8, z: -0.15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1659,7 +1659,6 @@ GameObject:
   - component: {fileID: 1262941253}
   - component: {fileID: 1262941256}
   - component: {fileID: 1262941255}
-  - component: {fileID: 1262941254}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -1682,27 +1681,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1577816366}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1262941254
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1262941252}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1262941255
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2033,7 +2011,6 @@ GameObject:
   - component: {fileID: 1429845517}
   - component: {fileID: 1429845520}
   - component: {fileID: 1429845519}
-  - component: {fileID: 1429845518}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -2056,27 +2033,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 416327669}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1429845518
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1429845516}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1429845519
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2156,16 +2112,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64f29b7e10e780b459b32b4725e19127, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  seed: 47583533
-  biome: {fileID: 11400000, guid: 41a1de4580bd32a4f9440d9a6cefef5a, type: 2}
-  enableThreading: 1
-  globalLightLevel: 0.58
+  settings:
+    version: 0.0.01
+    viewDistance: 5
+    enableThreading: 1
+    mouseSensitivity: 3.08
+  biomes:
+  - {fileID: 11400000, guid: 41a1de4580bd32a4f9440d9a6cefef5a, type: 2}
+  - {fileID: 11400000, guid: 0e7235e74321aaf4b96dc53818480c4f, type: 2}
+  globalLightLevel: 1
   day: {r: 0, g: 0.75526, b: 1, a: 1}
   night: {r: 0, g: 0.0039721797, b: 0.4528302, a: 1}
   player: {fileID: 2119425885}
   spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: 6cd8c2521a1bc6b429cde8196460fbec, type: 2}
-  transparentMaterial: {fileID: 2100000, guid: 2864addeb54c71c43be4f8fe433ad054, type: 2}
+  transparentMaterial: {fileID: 2100000, guid: da912c3c5c7320e43bbfbc68fb31f92c, type: 2}
   blockType:
   - name: Air
     isSolid: 0
@@ -2183,7 +2144,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -1273650768, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: -100137175, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 6
     frontFaceTexture: 6
@@ -2195,7 +2156,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -660908707, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 1274967820, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 5
     frontFaceTexture: 5
@@ -2207,7 +2168,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: 155194467, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 833145832, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 1
     frontFaceTexture: 1
@@ -2219,7 +2180,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 1
     transparancy: 0.8
-    Icon: {fileID: -1469796358, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 1144710105, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 20
     frontFaceTexture: 20
@@ -2231,7 +2192,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -259743860, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: -1775690381, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 0
     frontFaceTexture: 0
@@ -2243,7 +2204,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -1270637322, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: -1887995435, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 3
     frontFaceTexture: 3
@@ -2255,7 +2216,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -237984281, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 542354812, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 7
     frontFaceTexture: 7
@@ -2267,7 +2228,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 1
     transparancy: 1
-    Icon: {fileID: -1808323530, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: -565997357, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 8
     frontFaceTexture: 8
@@ -2279,7 +2240,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -1005731130, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 468499709, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 9
     frontFaceTexture: 9
@@ -2291,7 +2252,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -988642815, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 41125980, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 10
     frontFaceTexture: 10
@@ -2303,7 +2264,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: 204821390, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 491732577, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 11
     frontFaceTexture: 11
@@ -2315,7 +2276,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: -531874706, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: -1659334275, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 12
     frontFaceTexture: 12
@@ -2327,7 +2288,7 @@ MonoBehaviour:
     isSolid: 1
     renderNeighbourFaces: 0
     transparancy: 0
-    Icon: {fileID: 989980312, guid: c09f2a6506625d249891bfd68dda60f7, type: 3}
+    Icon: {fileID: 336841360, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 13
     frontFaceTexture: 13
@@ -2335,6 +2296,90 @@ MonoBehaviour:
     bottomFaceTexture: 13
     leftFaceTexture: 13
     rightFaceTexture: 13
+  - name: Brick
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: -534657505, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 14
+    frontFaceTexture: 14
+    topFaceTexture: 14
+    bottomFaceTexture: 14
+    leftFaceTexture: 14
+    rightFaceTexture: 14
+  - name: Quartz Pillar
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: -1311082465, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 15
+    frontFaceTexture: 15
+    topFaceTexture: 16
+    bottomFaceTexture: 16
+    leftFaceTexture: 15
+    rightFaceTexture: 15
+  - name: Oak Plank
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: -1293986949, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 17
+    frontFaceTexture: 17
+    topFaceTexture: 17
+    bottomFaceTexture: 17
+    leftFaceTexture: 17
+    rightFaceTexture: 17
+  - name: Oak Fence
+    isSolid: 1
+    renderNeighbourFaces: 1
+    transparancy: 1
+    Icon: {fileID: -1625110963, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 18
+    frontFaceTexture: 18
+    topFaceTexture: 18
+    bottomFaceTexture: 18
+    leftFaceTexture: 18
+    rightFaceTexture: 18
+  - name: Quartz Block
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: 1967495273, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 19
+    frontFaceTexture: 19
+    topFaceTexture: 19
+    bottomFaceTexture: 19
+    leftFaceTexture: 19
+    rightFaceTexture: 19
+  - name: Cactus
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 21
+    frontFaceTexture: 21
+    topFaceTexture: 22
+    bottomFaceTexture: 22
+    leftFaceTexture: 21
+    rightFaceTexture: 21
+  - name: Iron Block
+    isSolid: 1
+    renderNeighbourFaces: 0
+    transparancy: 0
+    Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 23
+    frontFaceTexture: 23
+    topFaceTexture: 23
+    bottomFaceTexture: 23
+    leftFaceTexture: 23
+    rightFaceTexture: 23
   debugScreen: {fileID: 1162100547}
 --- !u!4 &1467690071
 Transform:
@@ -2644,8 +2689,7 @@ MonoBehaviour:
   sprintSpeed: 6
   jumpForce: 5
   gravity: -9.82
-  mouseSense: 5
-  playerWidth: 0.15
+  playerWidth: 0.25
   HighlightedBlock: {fileID: 416327669}
   PlaceBlock: {fileID: 1577816366}
   checkIncrement: 0.1

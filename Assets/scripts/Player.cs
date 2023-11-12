@@ -15,9 +15,8 @@ public class Player : MonoBehaviour
     public float sprintSpeed = 6;
     public float jumpForce = 5;
     public float gravity = -9.82f;
-    public float mouseSense = 3;
 
-    public float playerWidth = 0.15f;
+    public float playerWidth = 0.5f;
 
     private float horizontal;
     private float vertical;
@@ -41,7 +40,7 @@ public class Player : MonoBehaviour
         cam = GameObject.Find("Main Camera").transform;
         world = GameObject.Find("World").GetComponent<WorldSc>();
 
-        Cursor.lockState = CursorLockMode.Locked;
+        world.inUI = false;
     }
 
     private void FixedUpdate()
@@ -66,7 +65,7 @@ public class Player : MonoBehaviour
         {
             if (world.inUI)
                 myCursor.returnClicked();
-                
+
             world.inUI = !world.inUI;
             inventory.SetActive(world.inUI);
             cursorSlot.SetActive(world.inUI);
@@ -132,10 +131,13 @@ public class Player : MonoBehaviour
 
     private void GetPlayerInputs()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            Application.Quit();
+
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
-        mouseHorizontal = Input.GetAxis("Mouse X") * mouseSense;
-        mouseVertical = Input.GetAxis("Mouse Y") * mouseSense;
+        mouseHorizontal = Input.GetAxis("Mouse X") * world.settings.mouseSensitivity;
+        mouseVertical = Input.GetAxis("Mouse Y") * world.settings.mouseSensitivity;
 
         if (Input.GetButtonDown("Sprint"))
         {

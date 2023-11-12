@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c09f2a6506625d249891bfd68dda60f7
+guid: 5e888aa1c025b064890c42ab0c947fd1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -149,7 +149,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GrassDirt
+      name: Grass_Icon
       rect:
         serializedVersion: 2
         x: 0
@@ -157,20 +157,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7a3774899fc9fda4b82f263f15147327
-      internalID: -259743860
+      spriteID: a2be8668af5766142b88bcf71b09036a
+      internalID: -1775690381
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dirt
+      name: Dirt_Icon
       rect:
         serializedVersion: 2
         x: 16
@@ -178,83 +178,41 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cb01661055afcb84c825b34069ca4d41
-      internalID: 155194467
+      spriteID: 98129b9c090738b4fb6675faee8cd252
+      internalID: 833145832
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Dir
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 304
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f802d03d47f75448a3189423ca23294
-      internalID: 1397510886
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodSide
+      name: Oak_Icon
       rect:
         serializedVersion: 2
         x: 48
-        y: 303
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1908767fae0a03348af2bf1b1fecd190
-      internalID: -1270637322
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WoodTopBottom
-      rect:
-        serializedVersion: 2
-        x: 64
         y: 304
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 65f98183ebb4ecc4aa54c83cffaac6b0
-      internalID: -1075605827
+      spriteID: d6c300e7928e3d6468bd2e31b3ec194d
+      internalID: -1887995435
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Stone
+      name: Stone_Icon
       rect:
         serializedVersion: 2
         x: 80
@@ -262,20 +220,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a782b1f2e957874fb34f6fb158ec9cc
-      internalID: -660908707
+      spriteID: fd57cb5209f56a1469866ba71380cf13
+      internalID: 1274967820
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Bedrock
+      name: Bedrock_Icon
       rect:
         serializedVersion: 2
         x: 96
@@ -283,20 +241,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1f6bc151c18468f4db6076b306f91560
-      internalID: -1273650768
+      spriteID: d06a21da78ec5034f9a95c96c1fcfe5d
+      internalID: -100137175
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sand
+      name: Sand_Icon
       rect:
         serializedVersion: 2
         x: 112
@@ -304,20 +262,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ecc2255227d2b76458daebaba9263505
-      internalID: -237984281
+      spriteID: b19c16f4704f036488c437e4cc41d5cc
+      internalID: 542354812
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Glass
+      name: Glass_Icon
       rect:
         serializedVersion: 2
         x: 128
@@ -325,20 +283,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1124d0454f4d91e46ba650b01f4f7dae
-      internalID: -1808323530
+      spriteID: b42cc69af64fe72489fd0800b023c808
+      internalID: -565997357
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: DiamondOre
+      name: DiamondOre_Icon
       rect:
         serializedVersion: 2
         x: 144
@@ -346,20 +304,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 46e8d4fb44be02145ae9958277a82ae9
-      internalID: -1005731130
+      spriteID: 603089f04d2964a40ab4f06d73b04cd2
+      internalID: 468499709
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: GoldOre
+      name: GoldOre_Icon
       rect:
         serializedVersion: 2
         x: 160
@@ -367,20 +325,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: dfde03200e62c404aa538b59284a8101
-      internalID: -988642815
+      spriteID: afbe4fed3230b7943a1675b5a37097c1
+      internalID: 41125980
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IronOre
+      name: IronOre_Icon
       rect:
         serializedVersion: 2
         x: 176
@@ -388,20 +346,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a5945c6c55cf0dc4eb21464afe03ef4c
-      internalID: 204821390
+      spriteID: ffcb0788794bed0468885657b850f0ef
+      internalID: 491732577
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: CoalOre
+      name: CoalOre_Icon
       rect:
         serializedVersion: 2
         x: 192
@@ -409,20 +367,20 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2537a756b5e669a49b5778f4adaa89eb
-      internalID: -531874706
+      spriteID: a586e887004f8064cb93664f3aec28a9
+      internalID: -1659334275
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: EmeraldOre
+      name: EmeraldOre_Icon
       rect:
         serializedVersion: 2
         x: 208
@@ -430,20 +388,125 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 573654534d866144a980b5a972be105d
-      internalID: 989980312
+      spriteID: b214b6063c2860744bae08e68b261728
+      internalID: 336841360
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Leaf
+      name: Brick_Icon
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b19fc08980ed8204aafb8e0a2532217a
+      internalID: -534657505
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuartzPillar_Icon
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8a758831d65e74994ca921d4f07422
+      internalID: -1311082465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OakPlank_Icon
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ac0c378f4d0eca6499b116f60ab182cd
+      internalID: -1293986949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: OakFence_Icon
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5baf1be8e785d4fba1c2475bed7a1e
+      internalID: -1625110963
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: QuartzBlock_Icon
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f421e9bd7975ed648b5630fd5e24cfe4
+      internalID: 1967495273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Leaf_Icon
       rect:
         serializedVersion: 2
         x: 0
@@ -451,14 +514,35 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cd5c5f679f311ac41a9501d4ac17b666
-      internalID: -1469796358
+      spriteID: d931dda3b1cb17e438ca32f9c73aca5b
+      internalID: 1144710105
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Cactus_Icon
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 288
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 17adffa546b4f864f9c77da7ef7744b1
+      internalID: 1136421164
       vertices: []
       indices: 
       edges: []
@@ -466,7 +550,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 409ea8af20ea1624eb6d730ec1073adb
+    spriteID: 0f47ae8617c7a134c9aae305e616489f
     internalID: 0
     vertices: []
     indices: 
@@ -474,21 +558,29 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Bedrock: -1273650768
-      CoalOre: -531874706
-      DiamondOre: -1005731130
-      Dir: 1397510886
-      Dirt: 155194467
-      EmeraldOre: 989980312
-      Glass: -1808323530
-      GoldOre: -988642815
-      GrassDirt: -259743860
-      IronOre: 204821390
-      Leaf: -1469796358
-      Sand: -237984281
-      Stone: -660908707
-      WoodSide: -1270637322
-      WoodTopBottom: -1075605827
+      Bedrock_Icon: -100137175
+      BlockIcons_22: 2000016302
+      Brick_Icon: -534657505
+      Cactus_Icon: 1136421164
+      CoalOre_Icon: -1659334275
+      DONT_USE: 1704805535
+      DONT_USE1: 1687120177
+      DONT_USE2: 2024299832
+      DiamondOre_Icon: 468499709
+      Dirt_Icon: 833145832
+      EmeraldOre_Icon: 336841360
+      Glass_Icon: -565997357
+      GoldOre_Icon: 41125980
+      Grass_Icon: -1775690381
+      IronOre_Icon: 491732577
+      Leaf_Icon: 1144710105
+      OakFence_Icon: -1625110963
+      OakPlank_Icon: -1293986949
+      Oak_Icon: -1887995435
+      QuartzBlock_Icon: 1967495273
+      QuartzPillar_Icon: -1311082465
+      Sand_Icon: 542354812
+      Stone_Icon: 1274967820
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
