@@ -11,6 +11,7 @@ public class Cloud : MonoBehaviour
 
     [SerializeField] private Texture2D cloudPattern = null;
     [SerializeField] private Material cloudMaterial = null;
+    [SerializeField] private WorldSc world = null;
     bool[,] cloudData; // Array of Bools representing where cloud is.
 
 
@@ -57,6 +58,26 @@ public class Cloud : MonoBehaviour
                 clouds.Add(CloudTilePosFromV3(position), CreateCloudTile(CreateCloudMesh(x, y), position));
             }
         }
+    }
+
+    public void UpdateClouds()
+    {
+         for (int x = 0; x < cloudTexWidth; x += cloudTileSize)
+        {
+            for (int y = 0; y < cloudTexWidth; y += cloudTileSize)
+            {
+                Vector3 position = world.player.position + new Vector3(x, 0, y) + offset;
+                position = new Vector3(RoundToCloud(position.x), cloudHeight, RoundToCloud(position.z));
+                Vector2Int cloudPosition = CloudTilePosFromV3(position);
+
+                clouds[cloudPosition].transform.position = position;
+            }
+        }
+    }
+
+    private int RoundToCloud(float value)
+    {
+        return Mathf.FloorToInt(value / cloudTileSize) * cloudTileSize;
     }
 
     private Mesh CreateCloudMesh(int x, int z)

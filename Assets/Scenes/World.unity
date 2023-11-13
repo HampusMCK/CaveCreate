@@ -573,6 +573,7 @@ MonoBehaviour:
   cloudHeight: 100
   cloudPattern: {fileID: 2800000, guid: 02d42a31a4a1e9549a90bdc1808b2e17, type: 3}
   cloudMaterial: {fileID: 2100000, guid: 57bf8f18ab8af1745adfce003a12d161, type: 2}
+  world: {fileID: 1467690070}
 --- !u!4 &210338197
 Transform:
   m_ObjectHideFlags: 0
@@ -2427,6 +2428,7 @@ MonoBehaviour:
     bottomFaceTexture: 23
     leftFaceTexture: 23
     rightFaceTexture: 23
+  clouds: {fileID: 210338196}
   debugScreen: {fileID: 1162100547}
 --- !u!4 &1467690071
 Transform:

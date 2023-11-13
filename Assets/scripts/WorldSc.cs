@@ -38,6 +38,8 @@ public class WorldSc : MonoBehaviour
 
     private bool _inUI = false;
 
+    public Cloud clouds;
+
     public GameObject debugScreen;
 
     Thread ChunkUpdateThread;
@@ -65,7 +67,7 @@ public class WorldSc : MonoBehaviour
         }
 
         SetGlobalLightValue();
-        spawnPosition = new Vector3 (voxelData.WorldCenter, voxelData.chunkHeight - 50, voxelData.WorldCenter);
+        spawnPosition = new Vector3(voxelData.WorldCenter, voxelData.chunkHeight - 50, voxelData.WorldCenter);
         player.position = spawnPosition;
         GenerateWorld();
         playerLastChunkCoord = getChunkCoordFromVector3(player.position);
@@ -220,6 +222,8 @@ public class WorldSc : MonoBehaviour
 
     void CheckViewDistance()
     {
+        clouds.UpdateClouds();
+
         ChunkCoord coord = getChunkCoordFromVector3(player.position);
         playerLastChunkCoord = playerChunkCoord;
 
