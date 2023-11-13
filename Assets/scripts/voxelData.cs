@@ -13,6 +13,11 @@ public static class voxelData
 
     public static int seed;
 
+    public static int WorldCenter
+    {
+        get { return (WorldSizeInChunks * chunkWidth) / 2; }
+    }
+
     public static int WorldSizeInVoxels
     {
         get { return WorldSizeInChunks * chunkWidth; }

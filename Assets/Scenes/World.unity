@@ -541,6 +541,53 @@ MonoBehaviour:
   m_Raycaster: {fileID: 140159119}
   m_EventSystem: {fileID: 58200509}
   pastClick: {fileID: 0}
+--- !u!1 &210338195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 210338197}
+  - component: {fileID: 210338196}
+  m_Layer: 0
+  m_Name: Clouds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &210338196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210338195}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9aee5b55d0a480e4eb9c801392c7acba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cloudHeight: 100
+  cloudPattern: {fileID: 2800000, guid: 02d42a31a4a1e9549a90bdc1808b2e17, type: 3}
+  cloudMaterial: {fileID: 2100000, guid: 57bf8f18ab8af1745adfce003a12d161, type: 2}
+--- !u!4 &210338197
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 210338195}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 364.7628, y: 268.07098, z: 156.02704}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &408762083
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2818,3 +2865,4 @@ SceneRoots:
   - {fileID: 58200510}
   - {fileID: 416327669}
   - {fileID: 1577816366}
+  - {fileID: 210338197}
