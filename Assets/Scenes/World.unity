@@ -2162,6 +2162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   settings:
     version: 0.0.01
+    loadDistance: 10
     viewDistance: 5
     enableThreading: 1
     mouseSensitivity: 3.08
@@ -2430,6 +2431,10 @@ MonoBehaviour:
     rightFaceTexture: 23
   clouds: {fileID: 210338196}
   debugScreen: {fileID: 1162100547}
+  worldData:
+    worldName: 
+    seed: 0
+  appPath: 
 --- !u!4 &1467690071
 Transform:
   m_ObjectHideFlags: 0
