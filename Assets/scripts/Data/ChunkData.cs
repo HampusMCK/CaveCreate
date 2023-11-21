@@ -17,6 +17,12 @@ public class ChunkData
         }
     }
 
+    Queue<VoxelState> lightToPropogate = new Queue<VoxelState>();
+    public void AddLightForPropogation (VoxelState voxel)
+    {
+        lightToPropogate.Enqueue(voxel);
+    }
+
     public ChunkData(Vector2Int pos) { position = pos; }
     public ChunkData(int _x, int _y) { x = _x; y = _y; }
 
@@ -31,11 +37,12 @@ public class ChunkData
             {
                 for (int z = 0; z < voxelData.chunkWidth; z++)
                 {
-                    map[x, y, z] = new VoxelState(WorldSc.Instance.GetVoxel(new Vector3(x + position.x, y, z + position.y)));
+                    map[x, y, z] = new VoxelState(WorldSc.Instance.GetVoxel(new Vector3(x + position.x, y, z + position.y)), this);
                 }
             }
         }
 
+        Lighting.RecalculateNaturalLight(this);
         WorldSc.Instance.worldData.AddToModifiedChunkList(this);
     }
 }

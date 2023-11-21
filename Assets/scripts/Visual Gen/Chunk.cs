@@ -29,10 +29,7 @@ public class Chunk
     public Chunk(ChunkCoord _coord)
     {
         coord = _coord;
-    }
 
-    public void Init()
-    {
         chunkObject = new GameObject();
         meshFilter = chunkObject.AddComponent<MeshFilter>();
         meshRenderer = chunkObject.AddComponent<MeshRenderer>();
@@ -48,15 +45,12 @@ public class Chunk
 
         chunkData = WorldSc.Instance.worldData.RequestChunk(new Vector2Int((int)position.x, (int)position.z), true);
 
-        lock (WorldSc.Instance.ChunkUpdateThreadLock)
-            WorldSc.Instance.chunksToUpdate.Add(this);
+        WorldSc.Instance.AddChunkToUpdate(this);
     }
 
     public void UpdateChunk()
     {
         ClearMeshData();
-
-        CalculateLight();
 
         for (int y = 0; y < voxelData.chunkHeight; y++)
         {
@@ -73,54 +67,6 @@ public class Chunk
         }
 
         WorldSc.Instance.chunksToDraw.Enqueue(this);
-    }
-
-    void CalculateLight()
-    {
-
-        Queue<Vector3Int> litVoxels = new Queue<Vector3Int>();
-        for (int x = 0; x < voxelData.chunkWidth; x++)
-        {
-            for (int z = 0; z < voxelData.chunkWidth; z++)
-            {
-                float lightRay = 1;
-                for (int y = voxelData.chunkHeight - 1; y >= 0; y--)
-                {
-                    VoxelState thisVoxel = chunkData.map[x, y, z];
-
-                    if (thisVoxel.id > 0 && WorldSc.Instance.blockType[thisVoxel.id].transparancy < lightRay)
-                        lightRay = WorldSc.Instance.blockType[thisVoxel.id].transparancy;
-
-                    thisVoxel.globalLightPrecent = lightRay;
-
-                    chunkData.map[x, y, z] = thisVoxel;
-
-                    if (lightRay > voxelData.lightFalloff)
-                        litVoxels.Enqueue(new Vector3Int(x, y, z));
-                }
-            }
-        }
-
-        while (litVoxels.Count > 0)
-        {
-            Vector3Int v = litVoxels.Dequeue();
-            for (int p = 0; p < 6; p++)
-            {
-                Vector3 currentVoxel = v + voxelData.faceCheck[p];
-                Vector3Int neighbour = new Vector3Int((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z);
-
-                if (IsVoxelInChunk(neighbour.x, neighbour.y, neighbour.z))
-                {
-                    if (chunkData.map[neighbour.x, neighbour.y, neighbour.z].globalLightPrecent < chunkData.map[v.x, v.y, v.z].globalLightPrecent - voxelData.lightFalloff)
-                    {
-                        chunkData.map[neighbour.x, neighbour.y, neighbour.z].globalLightPrecent = chunkData.map[v.x, v.y, v.z].globalLightPrecent - voxelData.lightFalloff;
-
-                        if (chunkData.map[neighbour.x, neighbour.y, neighbour.z].globalLightPrecent > voxelData.lightFalloff)
-                            litVoxels.Enqueue(neighbour);
-                    }
-                }
-            }
-        }
     }
 
     void ClearMeshData()
@@ -171,7 +117,7 @@ public class Chunk
 
         lock (WorldSc.Instance.ChunkUpdateThreadLock)
         {
-            WorldSc.Instance.chunksToUpdate.Insert(0, this);
+            WorldSc.Instance.AddChunkToUpdate(this, true);
             UpdateSurroundingVoxels(xCheck, yCheck, zCheck);
         }
 
@@ -187,7 +133,7 @@ public class Chunk
 
             if (!IsVoxelInChunk((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z))
             {
-                WorldSc.Instance.chunksToUpdate.Insert(0, WorldSc.Instance.getChunkFromVector3(thisVoxel + position));
+                WorldSc.Instance.AddChunkToUpdate(WorldSc.Instance.getChunkFromVector3(thisVoxel + position), true);
             }
         }
     }
@@ -223,7 +169,7 @@ public class Chunk
         int y = Mathf.FloorToInt(pos.y);
         int z = Mathf.FloorToInt(pos.z);
 
-        byte blockId = chunkData.map[x, y, z].id;
+        VoxelState voxel = chunkData.map[x, y, z];
         //bool isTransparent = WorldSc.Instance.blockType[blockId].renderNeighbourFaces;
 
         for (int p = 0; p < 6; p++)
@@ -241,9 +187,9 @@ public class Chunk
                 for (int i = 0; i < 4; i++)
                     normals.Add(voxelData.faceCheck[p]);
 
-                AddTexture(WorldSc.Instance.blockType[blockId].GetTextureId(p));
+                AddTexture(voxel.properties.GetTextureId(p));
 
-                float lightLevel = neighbour.globalLightPrecent;
+                float lightLevel = neighbour.lightAsFloat;
 
 
 
@@ -252,7 +198,7 @@ public class Chunk
                 colors.Add(new Color(0, 0, 0, lightLevel));
                 colors.Add(new Color(0, 0, 0, lightLevel));
 
-                if (!WorldSc.Instance.blockType[neighbour.id].renderNeighbourFaces)
+                if (!neighbour.properties.renderNeighbourFaces)
                 {
                     triangles.Add(vertexIndex);
                     triangles.Add(vertexIndex + 1);
@@ -350,24 +296,5 @@ public class ChunkCoord
         {
             return false;
         }
-    }
-}
-
-[System.Serializable]
-public class VoxelState
-{
-    public byte id;
-    public float globalLightPrecent;
-
-    public VoxelState()
-    {
-        id = 0;
-        globalLightPrecent = 0;
-    }
-
-    public VoxelState(byte _id)
-    {
-        id = _id;
-        globalLightPrecent = 0;
     }
 }

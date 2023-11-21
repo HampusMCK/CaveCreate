@@ -18,6 +18,7 @@ public class WorldSc : MonoBehaviour
     public Transform player;
     public Vector3 spawnPosition;
 
+    [Header("Block Data")]
     public Material material;
     public Material transparentMaterial;
     public BlockType[] blockType;
@@ -28,8 +29,7 @@ public class WorldSc : MonoBehaviour
     public ChunkCoord playerChunkCoord;
     ChunkCoord playerLastChunkCoord;
 
-    List<ChunkCoord> chunksToCreate = new List<ChunkCoord>();
-    public List<Chunk> chunksToUpdate = new List<Chunk>();
+    private List<Chunk> chunksToUpdate = new List<Chunk>();
     public Queue<Chunk> chunksToDraw = new Queue<Chunk>();
 
     bool applyingModifications = false;
@@ -40,6 +40,7 @@ public class WorldSc : MonoBehaviour
 
     public Cloud clouds;
 
+    [Header("Stat View")]
     public GameObject debugScreen;
 
     Thread ChunkUpdateThread;
@@ -50,8 +51,8 @@ public class WorldSc : MonoBehaviour
     private static WorldSc _instance;
     public static WorldSc Instance { get { return _instance; } }
 
+    [Header("World Data")]
     public WorldData worldData;
-
     public string appPath;
 
     private void Awake()
@@ -86,8 +87,8 @@ public class WorldSc : MonoBehaviour
         SetGlobalLightValue();
         spawnPosition = new Vector3(voxelData.WorldCenter, voxelData.chunkHeight - 50, voxelData.WorldCenter);
         player.position = spawnPosition;
-        GenerateWorld();
-        playerLastChunkCoord = getChunkCoordFromVector3(player.position);
+        player.position = spawnPosition;
+        CheckViewDistance(); playerLastChunkCoord = getChunkCoordFromVector3(player.position);
 
         if (settings.enableThreading)
         {
@@ -111,9 +112,6 @@ public class WorldSc : MonoBehaviour
         {
             CheckViewDistance();
         }
-
-        if (chunksToCreate.Count > 0)
-            createChunk();
 
         if (chunksToDraw.Count > 0)
         {
@@ -147,27 +145,23 @@ public class WorldSc : MonoBehaviour
         }
     }
 
-    void GenerateWorld()
+    public void AddChunkToUpdate(Chunk chunk)
     {
-        for (int x = (voxelData.WorldSizeInChunks / 2) - settings.loadDistance; x < (voxelData.WorldSizeInChunks / 2) + settings.loadDistance; x++)
-        {
-            for (int z = (voxelData.WorldSizeInChunks / 2) - settings.loadDistance; z < (voxelData.WorldSizeInChunks / 2) + settings.loadDistance; z++)
-            {
-                ChunkCoord newChunk = new ChunkCoord(x, z);
-                chunks[x, z] = new Chunk(newChunk);
-                chunksToCreate.Add(newChunk);
-            }
-        }
-
-        player.position = spawnPosition;
-        CheckViewDistance();
+        AddChunkToUpdate(chunk, false);
     }
 
-    void createChunk()
+    public void AddChunkToUpdate(Chunk chunk, bool insert)
     {
-        ChunkCoord c = chunksToCreate[0];
-        chunksToCreate.RemoveAt(0);
-        chunks[c.x, c.z].Init();
+        lock (ChunkUpdateThreadLock)
+        {
+            if (!chunksToUpdate.Contains(chunk))
+            {
+                if (insert)
+                    chunksToUpdate.Insert(0, chunk);
+                else
+                    chunksToUpdate.Add(chunk);
+            }
+        }
     }
 
     void UpdateChunks()
@@ -257,12 +251,8 @@ public class WorldSc : MonoBehaviour
                     if (chunks[x, z] == null)
                     {
                         chunks[x, z] = new Chunk(thisChunkCoord);
-                        chunksToCreate.Add(thisChunkCoord);
                     }
-                    else if (!chunks[x, z].isActive)
-                    {
-                        chunks[x, z].isActive = true;
-                    }
+                    chunks[x, z].isActive = true;
                     activeChunks.Add(thisChunkCoord);
                 }
 
@@ -454,7 +444,7 @@ public class BlockType
     public string name;
     public bool isSolid;
     public bool renderNeighbourFaces;
-    public float transparancy;
+    public byte opacity;
     public Sprite Icon;
     public int maxStackSize;
 
