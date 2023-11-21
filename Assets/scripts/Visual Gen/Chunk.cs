@@ -44,6 +44,7 @@ public class Chunk
         position = chunkObject.transform.position;
 
         chunkData = WorldSc.Instance.worldData.RequestChunk(new Vector2Int((int)position.x, (int)position.z), true);
+        chunkData.chunk = this;
 
         WorldSc.Instance.AddChunkToUpdate(this);
     }
@@ -91,18 +92,6 @@ public class Chunk
         }
     }
 
-    bool IsVoxelInChunk(int x, int y, int z)
-    {
-        if (x < 0 || x > voxelData.chunkWidth - 1 || y < 0 || y > voxelData.chunkHeight - 1 || z < 0 || z > voxelData.chunkWidth - 1)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
-    }
-
     public void EditVoxel(Vector3 pos, byte newID)
     {
         int xCheck = Mathf.FloorToInt(pos.x);
@@ -112,15 +101,9 @@ public class Chunk
         xCheck -= Mathf.FloorToInt(chunkObject.transform.position.x);
         zCheck -= Mathf.FloorToInt(chunkObject.transform.position.z);
 
-        chunkData.map[xCheck, yCheck, zCheck].id = newID;
-        WorldSc.Instance.worldData.AddToModifiedChunkList(chunkData);
+        chunkData.ModifyVoxel(new Vector3Int(xCheck, yCheck, zCheck), newID);
 
-        lock (WorldSc.Instance.ChunkUpdateThreadLock)
-        {
-            WorldSc.Instance.AddChunkToUpdate(this, true);
-            UpdateSurroundingVoxels(xCheck, yCheck, zCheck);
-        }
-
+        UpdateSurroundingVoxels(xCheck, yCheck, zCheck);
     }
 
     void UpdateSurroundingVoxels(int x, int y, int z)
@@ -131,25 +114,11 @@ public class Chunk
         {
             Vector3 currentVoxel = thisVoxel + voxelData.faceCheck[p];
 
-            if (!IsVoxelInChunk((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z))
+            if (!chunkData.IsVoxelInChunk((int)currentVoxel.x, (int)currentVoxel.y, (int)currentVoxel.z))
             {
                 WorldSc.Instance.AddChunkToUpdate(WorldSc.Instance.getChunkFromVector3(thisVoxel + position), true);
             }
         }
-    }
-
-    VoxelState CheckVoxel(Vector3 pos)
-    {
-        int x = Mathf.FloorToInt(pos.x);
-        int y = Mathf.FloorToInt(pos.y);
-        int z = Mathf.FloorToInt(pos.z);
-
-        if (!IsVoxelInChunk(x, y, z))
-        {
-            return WorldSc.Instance.GetVoxelState(pos + position);
-        }
-
-        return chunkData.map[x, y, z];
     }
 
     public VoxelState GetVoxelFromGlobalVector3(Vector3 pos)
@@ -170,12 +139,10 @@ public class Chunk
         int z = Mathf.FloorToInt(pos.z);
 
         VoxelState voxel = chunkData.map[x, y, z];
-        //bool isTransparent = WorldSc.Instance.blockType[blockId].renderNeighbourFaces;
 
         for (int p = 0; p < 6; p++)
         {
-
-            VoxelState neighbour = CheckVoxel(pos + voxelData.faceCheck[p]);
+            VoxelState neighbour = chunkData.map[x, y, z].neighbours[p];
 
             if (neighbour != null && WorldSc.Instance.blockType[neighbour.id].renderNeighbourFaces)
             {

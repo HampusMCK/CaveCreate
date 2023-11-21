@@ -97,8 +97,7 @@ public class WorldData
       Vector3Int voxel = new Vector3Int((int)(pos.x - x), (int)pos.y, (int)(pos.z - z));
 
       //set Voxel
-      chunk.map[voxel.x, voxel.y, voxel.z].id = value;
-      AddToModifiedChunkList(chunk);
+      chunk.ModifyVoxel(voxel, value);
    }
 
    public VoxelState GetVoxel(Vector3 pos)
@@ -116,7 +115,10 @@ public class WorldData
       z *= voxelData.chunkWidth;
 
       //Does chunk Exist ? ignore:Create new
-      ChunkData chunk = RequestChunk(new Vector2Int(x, z), true);
+      ChunkData chunk = RequestChunk(new Vector2Int(x, z), false);
+
+      if (chunk == null)
+         return null;
 
       //Create pos of voxel in chunk
       Vector3Int voxel = new Vector3Int((int)(pos.x - x), (int)pos.y, (int)(pos.z - z));
