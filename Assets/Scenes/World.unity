@@ -2477,6 +2477,19 @@ MonoBehaviour:
     bottomFaceTexture: 26
     leftFaceTexture: 24
     rightFaceTexture: 24
+  - name: Water
+    isSolid: 1
+    MeshData: {fileID: 11400000, guid: 6fb8175d78e973145b626c459985ade5, type: 2}
+    renderNeighbourFaces: 1
+    opacity: 7
+    Icon: {fileID: -838484162, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 25
+    frontFaceTexture: 24
+    topFaceTexture: 26
+    bottomFaceTexture: 26
+    leftFaceTexture: 24
+    rightFaceTexture: 24
   clouds: {fileID: 210338196}
   debugScreen: {fileID: 1162100547}
   worldData:
