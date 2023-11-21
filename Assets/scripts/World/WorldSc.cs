@@ -16,6 +16,7 @@ public class WorldSc : MonoBehaviour
     public Color night;
 
     public Transform player;
+    public Player _player;
     public Vector3 spawnPosition;
 
     [Header("Block Data")]
@@ -63,6 +64,8 @@ public class WorldSc : MonoBehaviour
             _instance = this;
 
         appPath = Application.persistentDataPath;
+
+        _player = player.GetComponent<Player>();
     }
 
     private void Start()
@@ -208,7 +211,7 @@ public class WorldSc : MonoBehaviour
             {
                 VoxelMod v = queue.Dequeue();
 
-                worldData.SetVoxel(v.position, v.id);
+                worldData.SetVoxel(v.position, v.id, 1);
             }
         }
 

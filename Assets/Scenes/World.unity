@@ -2173,6 +2173,7 @@ MonoBehaviour:
   day: {r: 0, g: 0.75526, b: 1, a: 1}
   night: {r: 0, g: 0.0039721797, b: 0.4528302, a: 1}
   player: {fileID: 2119425885}
+  _player: {fileID: 0}
   spawnPosition: {x: 0, y: 0, z: 0}
   material: {fileID: 2100000, guid: 6cd8c2521a1bc6b429cde8196460fbec, type: 2}
   transparentMaterial: {fileID: 2100000, guid: da912c3c5c7320e43bbfbc68fb31f92c, type: 2}
@@ -2195,7 +2196,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -100137175, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 204802626, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 6
     frontFaceTexture: 6
@@ -2208,7 +2209,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 1274967820, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -1894881426, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 5
     frontFaceTexture: 5
@@ -2221,7 +2222,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 833145832, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 2140036450, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 1
     frontFaceTexture: 1
@@ -2234,7 +2235,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
     opacity: 5
-    Icon: {fileID: 1144710105, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -215480302, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 20
     frontFaceTexture: 20
@@ -2247,7 +2248,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -1775690381, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 909035719, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 0
     frontFaceTexture: 0
@@ -2260,7 +2261,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -1887995435, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 1766162952, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 3
     frontFaceTexture: 3
@@ -2273,7 +2274,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 542354812, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -1724924996, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 7
     frontFaceTexture: 7
@@ -2286,7 +2287,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
     opacity: 0
-    Icon: {fileID: -565997357, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -299031902, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 8
     frontFaceTexture: 8
@@ -2299,7 +2300,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 468499709, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 1351072877, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 9
     frontFaceTexture: 9
@@ -2312,7 +2313,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 41125980, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -2036681789, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 10
     frontFaceTexture: 10
@@ -2325,7 +2326,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 491732577, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -1809775345, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 11
     frontFaceTexture: 11
@@ -2338,7 +2339,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -1659334275, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 1968208191, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 12
     frontFaceTexture: 12
@@ -2351,7 +2352,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 336841360, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 531161331, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 13
     frontFaceTexture: 13
@@ -2364,7 +2365,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -534657505, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -342979426, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 14
     frontFaceTexture: 14
@@ -2377,7 +2378,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -1311082465, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 28158489, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 15
     frontFaceTexture: 15
@@ -2387,10 +2388,23 @@ MonoBehaviour:
     rightFaceTexture: 15
   - name: Oak Plank
     isSolid: 1
-    MeshData: {fileID: 11400000, guid: 02dd9c51184468f469acc6bd12261214, type: 2}
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: -1293986949, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 107657614, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 17
+    frontFaceTexture: 17
+    topFaceTexture: 17
+    bottomFaceTexture: 17
+    leftFaceTexture: 17
+    rightFaceTexture: 17
+  - name: Oak Slab
+    isSolid: 1
+    MeshData: {fileID: 11400000, guid: 02dd9c51184468f469acc6bd12261214, type: 2}
+    renderNeighbourFaces: 1
+    opacity: 0
+    Icon: {fileID: 734485981, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 17
     frontFaceTexture: 17
@@ -2403,7 +2417,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
     opacity: 15
-    Icon: {fileID: -1625110963, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 676240537, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 18
     frontFaceTexture: 18
@@ -2416,7 +2430,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 1967495273, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: -509724413, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 19
     frontFaceTexture: 19
@@ -2429,7 +2443,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 1812259627, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 21
     frontFaceTexture: 21
@@ -2442,7 +2456,7 @@ MonoBehaviour:
     MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
     opacity: 15
-    Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    Icon: {fileID: 706459214, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 23
     frontFaceTexture: 23
@@ -2450,6 +2464,19 @@ MonoBehaviour:
     bottomFaceTexture: 23
     leftFaceTexture: 23
     rightFaceTexture: 23
+  - name: Furnace
+    isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
+    renderNeighbourFaces: 0
+    opacity: 15
+    Icon: {fileID: -838484162, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
+    maxStackSize: 64
+    backFaceTexture: 25
+    frontFaceTexture: 24
+    topFaceTexture: 26
+    bottomFaceTexture: 26
+    leftFaceTexture: 24
+    rightFaceTexture: 24
   clouds: {fileID: 210338196}
   debugScreen: {fileID: 1162100547}
   worldData:
@@ -2765,6 +2792,7 @@ MonoBehaviour:
   jumpForce: 5
   gravity: -9.82
   playerWidth: 0.25
+  orientation: 0
   HighlightedBlock: {fileID: 416327669}
   PlaceBlock: {fileID: 1577816366}
   checkIncrement: 0.1

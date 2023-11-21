@@ -76,7 +76,7 @@ public class WorldData
          return false;
    }
 
-   public void SetVoxel(Vector3 pos, byte value)
+   public void SetVoxel(Vector3 pos, byte value, int direction)
    {
       //Voxel outside world ? return:Continue
       if (!isVoxelInWorld(pos))
@@ -97,7 +97,7 @@ public class WorldData
       Vector3Int voxel = new Vector3Int((int)(pos.x - x), (int)pos.y, (int)(pos.z - z));
 
       //set Voxel
-      chunk.ModifyVoxel(voxel, value);
+      chunk.ModifyVoxel(voxel, value, direction);
    }
 
    public VoxelState GetVoxel(Vector3 pos)

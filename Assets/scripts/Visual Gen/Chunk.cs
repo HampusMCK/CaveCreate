@@ -101,7 +101,7 @@ public class Chunk
         xCheck -= Mathf.FloorToInt(chunkObject.transform.position.x);
         zCheck -= Mathf.FloorToInt(chunkObject.transform.position.z);
 
-        chunkData.ModifyVoxel(new Vector3Int(xCheck, yCheck, zCheck), newID);
+        chunkData.ModifyVoxel(new Vector3Int(xCheck, yCheck, zCheck), newID, WorldSc.Instance._player.orientation);
 
         UpdateSurroundingVoxels(xCheck, yCheck, zCheck);
     }
@@ -140,9 +140,53 @@ public class Chunk
 
         VoxelState voxel = chunkData.map[x, y, z];
 
+        float rot = 0;
+        switch (voxel.orientation)
+        {
+            case 0:
+                rot = 180;
+                break;
+            case 1:
+                rot = 0;
+                break;
+            case 4:
+                rot = 270;
+                break;
+            default:
+                rot = 90;
+                break;
+        }
+
         for (int p = 0; p < 6; p++)
         {
-            VoxelState neighbour = chunkData.map[x, y, z].neighbours[p];
+            int translatedP = p;
+
+            if (voxel.orientation != 1)
+            {
+                if (voxel.orientation == 0)
+                {
+                    if (p == 0) translatedP = 1;
+                    else if (p == 1) translatedP = 0;
+                    else if (p == 4) translatedP = 5;
+                    else if (p == 5) translatedP = 4;
+                }
+                else if (voxel.orientation == 5)
+                {
+                    if (p == 0) translatedP = 5;
+                    else if (p == 1) translatedP = 4;
+                    else if (p == 4) translatedP = 0;
+                    else if (p == 5) translatedP = 1;
+                }
+                else if (voxel.orientation == 4)
+                {
+                    if (p == 0) translatedP = 4;
+                    else if (p == 1) translatedP = 5;
+                    else if (p == 4) translatedP = 1;
+                    else if (p == 5) translatedP = 0;
+                }
+            }
+
+            VoxelState neighbour = chunkData.map[x, y, z].neighbours[translatedP];
 
             if (neighbour != null && neighbour.properties.renderNeighbourFaces)
             {
@@ -151,10 +195,11 @@ public class Chunk
 
                 for (int i = 0; i < voxel.properties.MeshData.faces[p].vertData.Length; i++)
                 {
-                    vertices.Add(pos + voxel.properties.MeshData.faces[p].vertData[i].position);
-                    normals.Add(voxel.properties.MeshData.faces[p].normal);
+                    VertData vertData = voxel.properties.MeshData.faces[p].GetVertData(i);
+                    vertices.Add(pos + vertData.GetRotatedPosition(new Vector3(0, rot, 0)));
+                    normals.Add(voxelData.faceCheck[p]);
                     colors.Add(new Color(0, 0, 0, lightLevel));
-                    AddTexture(voxel.properties.GetTextureId(p), voxel.properties.MeshData.faces[p].vertData[i].uv);
+                    AddTexture(voxel.properties.GetTextureId(p), vertData.uv);
                     faceVertCount++;
                 }
 
