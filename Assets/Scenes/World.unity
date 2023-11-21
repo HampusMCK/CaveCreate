@@ -2179,8 +2179,9 @@ MonoBehaviour:
   blockType:
   - name: Air
     isSolid: 0
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
-    transparancy: 0
+    opacity: 0
     Icon: {fileID: 0}
     maxStackSize: 0
     backFaceTexture: 0
@@ -2191,8 +2192,9 @@ MonoBehaviour:
     rightFaceTexture: 0
   - name: Bedrock
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -100137175, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 6
@@ -2203,8 +2205,9 @@ MonoBehaviour:
     rightFaceTexture: 6
   - name: Stone
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 1274967820, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 5
@@ -2215,8 +2218,9 @@ MonoBehaviour:
     rightFaceTexture: 5
   - name: Dirt
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 833145832, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 1
@@ -2227,8 +2231,9 @@ MonoBehaviour:
     rightFaceTexture: 1
   - name: Leaf
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
-    transparancy: 0.8
+    opacity: 5
     Icon: {fileID: 1144710105, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 20
@@ -2239,8 +2244,9 @@ MonoBehaviour:
     rightFaceTexture: 20
   - name: grass
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -1775690381, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 0
@@ -2251,8 +2257,9 @@ MonoBehaviour:
     rightFaceTexture: 0
   - name: wood
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -1887995435, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 3
@@ -2263,8 +2270,9 @@ MonoBehaviour:
     rightFaceTexture: 3
   - name: Sand
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 542354812, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 7
@@ -2275,8 +2283,9 @@ MonoBehaviour:
     rightFaceTexture: 7
   - name: Glass
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
-    transparancy: 1
+    opacity: 0
     Icon: {fileID: -565997357, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 8
@@ -2287,8 +2296,9 @@ MonoBehaviour:
     rightFaceTexture: 8
   - name: Diamond Ore
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 468499709, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 9
@@ -2299,8 +2309,9 @@ MonoBehaviour:
     rightFaceTexture: 9
   - name: Gold Ore
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 41125980, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 10
@@ -2311,8 +2322,9 @@ MonoBehaviour:
     rightFaceTexture: 10
   - name: Iron Ore
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 491732577, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 11
@@ -2323,8 +2335,9 @@ MonoBehaviour:
     rightFaceTexture: 11
   - name: Coal Ore
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -1659334275, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 12
@@ -2335,8 +2348,9 @@ MonoBehaviour:
     rightFaceTexture: 12
   - name: Emerald Ore
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 336841360, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 13
@@ -2347,8 +2361,9 @@ MonoBehaviour:
     rightFaceTexture: 13
   - name: Brick
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -534657505, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 14
@@ -2359,8 +2374,9 @@ MonoBehaviour:
     rightFaceTexture: 14
   - name: Quartz Pillar
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -1311082465, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 15
@@ -2371,8 +2387,9 @@ MonoBehaviour:
     rightFaceTexture: 15
   - name: Oak Plank
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 02dd9c51184468f469acc6bd12261214, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: -1293986949, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 17
@@ -2383,8 +2400,9 @@ MonoBehaviour:
     rightFaceTexture: 17
   - name: Oak Fence
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 1
-    transparancy: 1
+    opacity: 15
     Icon: {fileID: -1625110963, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 18
@@ -2395,8 +2413,9 @@ MonoBehaviour:
     rightFaceTexture: 18
   - name: Quartz Block
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 1967495273, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 19
@@ -2407,8 +2426,9 @@ MonoBehaviour:
     rightFaceTexture: 19
   - name: Cactus
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 21
@@ -2419,8 +2439,9 @@ MonoBehaviour:
     rightFaceTexture: 21
   - name: Iron Block
     isSolid: 1
+    MeshData: {fileID: 11400000, guid: 3002928d0422163469969f035a21ebb4, type: 2}
     renderNeighbourFaces: 0
-    transparancy: 0
+    opacity: 15
     Icon: {fileID: 1136421164, guid: 5e888aa1c025b064890c42ab0c947fd1, type: 3}
     maxStackSize: 64
     backFaceTexture: 23

@@ -443,6 +443,7 @@ public class BlockType
 {
     public string name;
     public bool isSolid;
+    public VoxelMeshData MeshData;
     public bool renderNeighbourFaces;
     public byte opacity;
     public Sprite Icon;

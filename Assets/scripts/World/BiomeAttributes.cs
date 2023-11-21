@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "BiomeAttributes", menuName = "MineCraftTutorial/Biome Attribute")]
+[CreateAssetMenu(fileName = "BiomeAttributes", menuName = "CaveCreate/Biome Attribute")]
 public class BiomeAttributes : ScriptableObject
 {
     [Header("Biome Data")]
