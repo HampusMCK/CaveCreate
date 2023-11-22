@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading;
 using System.IO;
+using System.Collections;
 
 public class WorldSc : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class WorldSc : MonoBehaviour
     [Header("Block Data")]
     public Material material;
     public Material transparentMaterial;
+    public Material waterMaterial;
+
     public BlockType[] blockType;
 
     Chunk[,] chunks = new Chunk[voxelData.WorldSizeInChunks, voxelData.WorldSizeInChunks];
@@ -98,12 +101,26 @@ public class WorldSc : MonoBehaviour
             ChunkUpdateThread = new Thread(new ThreadStart(ThreadedUpdate));
             ChunkUpdateThread.Start();
         }
+
+        StartCoroutine(Tick());
     }
 
     public void SetGlobalLightValue()
     {
         Shader.SetGlobalFloat("GlobalLightLevel", globalLightLevel);
         Camera.main.backgroundColor = Color.Lerp(night, day, globalLightLevel);
+    }
+
+    IEnumerator Tick()
+    {
+        while (true)
+        {
+            foreach (ChunkCoord c in activeChunks)
+            {
+                chunks[c.x, c.z].TickUpdate();
+            }
+            yield return new WaitForSeconds(voxelData.tickLength);
+        }
     }
 
     private void Update()
@@ -376,7 +393,10 @@ public class WorldSc : MonoBehaviour
         }
         else if (yPos > terrainHeight)
         {
-            return 0;
+            if (yPos < voxelData.seaLevel)
+                return 23;
+            else
+                return 0;
         }
         else
         {
@@ -403,7 +423,7 @@ public class WorldSc : MonoBehaviour
         //Tree Pass
         /* 0 = Air, 1 = Bedrock, 2 = Stone, 3 = Dirt, 4 = Leaf, 5 = Grass, 6 = Wood, 7 = Sand, 8 = Glass, 9 = Diamond Ore, 10 = Gold Ore, 11 = Iron Ore, 12 = Coal Ore, 13 = Emerald Ore */
 
-        if (yPos == terrainHeight && biome.placeMajorFlora)
+        if (yPos == terrainHeight && biome.placeMajorFlora && yPos >= voxelData.seaLevel)
         {
             if (Noise.Get2DPerlin(new Vector2(pos.x, pos.z), 0, biome.majorFloraZoneScale) > biome.majorFloraZoneThreshold)
             {
@@ -448,6 +468,7 @@ public class BlockType
     public bool isSolid;
     public VoxelMeshData MeshData;
     public bool renderNeighbourFaces;
+    public bool isWater;
     public byte opacity;
     public Sprite Icon;
     public int maxStackSize;
