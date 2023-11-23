@@ -29,6 +29,8 @@ public class Chunk
 
     ChunkData chunkData;
 
+    List<VoxelState> activeVoxels = new List<VoxelState>();
+
     public Chunk(ChunkCoord _coord)
     {
         coord = _coord;
@@ -50,12 +52,31 @@ public class Chunk
         chunkData = WorldSc.Instance.worldData.RequestChunk(new Vector2Int((int)position.x, (int)position.z), true);
         chunkData.chunk = this;
 
+        for (int y = 0; y < voxelData.chunkHeight; y++)
+        {
+            for (int x = 0; x < voxelData.chunkWidth; x++)
+            {
+                for (int z = 0; z < voxelData.chunkWidth; z++)
+                {
+                    VoxelState voxel = chunkData.map[x, y, z];
+                    if (voxel.properties.isActive)
+                        AddActiveVoxel(voxel);
+                }
+            }
+        }
+
         WorldSc.Instance.AddChunkToUpdate(this);
     }
 
     public void TickUpdate()
     {
-
+        for (int i = activeVoxels.Count - 1; i > -1; i--)
+        {
+            if (!BlockBehaviour.Active(activeVoxels[i]))
+                RemoveActiveVoxel(activeVoxels[i]);
+            else
+                BlockBehaviour.Behave(activeVoxels[i]);
+        }
     }
 
     public void UpdateChunk()
@@ -77,6 +98,22 @@ public class Chunk
         }
 
         WorldSc.Instance.chunksToDraw.Enqueue(this);
+    }
+
+    public void AddActiveVoxel(VoxelState voxel)
+    {
+        if (!activeVoxels.Contains(voxel))
+            activeVoxels.Add(voxel);
+    }
+
+    public void RemoveActiveVoxel(VoxelState voxel)
+    {
+        for (int i = 0; i < activeVoxels.Count; i++)
+        {
+            if (activeVoxels[i] == voxel)
+                activeVoxels.RemoveAt(i);
+            return;
+        }
     }
 
     void ClearMeshData()
@@ -114,12 +151,6 @@ public class Chunk
         chunkData.ModifyVoxel(new Vector3Int(xCheck, yCheck, zCheck), newID, WorldSc.Instance._player.orientation);
 
         UpdateSurroundingVoxels(xCheck, yCheck, zCheck);
-
-        VoxelState voxel = chunkData.map[xCheck, yCheck, zCheck];
-        for (int i = 0; i < 6; i++)
-        {
-            BlockBehaviour.Active(voxel.neighbours[i]);
-        }
     }
 
     void UpdateSurroundingVoxels(int x, int y, int z)

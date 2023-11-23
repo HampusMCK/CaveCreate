@@ -471,6 +471,7 @@ public class BlockType
     public bool isWater;
     public byte opacity;
     public Sprite Icon;
+    public bool isActive;
     public int maxStackSize;
 
     [Header("Texture Values")]

@@ -16,7 +16,7 @@ public static class voxelData
         get { return 1 / 16; }
     }
 
-    public static float tickLength = 1;
+    public static float tickLength = 2;
 
     public static int seed;
 
